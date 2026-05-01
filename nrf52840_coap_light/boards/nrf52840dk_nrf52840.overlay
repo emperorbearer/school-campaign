@@ -1,0 +1,20 @@
+/*
+ * nRF52840 DK 핀 오버레이
+ *
+ * 버튼 1 (SW0) → P0.11  : CoAP ON 요청
+ * 버튼 2 (SW1) → P0.12  : CoAP OFF 요청
+ * LED   1      → P0.13  : 로컬 상태 표시
+ */
+
+/ {
+    chosen {
+        zephyr,console = &cdc_acm_uart0;
+        zephyr,shell-uart = &cdc_acm_uart0;
+    };
+};
+
+&zephyr_udc0 {
+    cdc_acm_uart0: cdc_acm_uart0 {
+        compatible = "zephyr,cdc-acm-uart";
+    };
+};
