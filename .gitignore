@@ -16,6 +16,8 @@ zephyrhome/**/.zephyrhome_build/
 zephyrhome/**/__pycache__/
 zephyrhome/*.egg-info/
 zephyrhome/zephyrhome.egg-info/
+zephyrhome.egg-info/
+*.egg-info/
 
 # Misc
 .DS_Store
