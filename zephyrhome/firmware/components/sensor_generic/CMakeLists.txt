@@ -1,0 +1,4 @@
+zephyr_library_named(zh_sensor_generic)
+zephyr_library_sources(zh_sensor_generic.c)
+zephyr_library_include_directories(.)
+zephyr_include_directories(.)

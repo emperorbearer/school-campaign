@@ -1,0 +1,62 @@
+# ZephyrHome base framework Kconfig
+
+config ZEPHYRHOME
+	bool "ZephyrHome firmware framework"
+	select NETWORKING
+	select NET_UDP
+	select NET_IPV6
+	select NET_L2_OPENTHREAD
+	select COAP
+	help
+	  Enable the ZephyrHome base framework for CoAP-based IoT devices.
+
+if ZEPHYRHOME
+
+config ZEPHYRHOME_DEVICE_NAME
+	string "Device name"
+	default "zephyrhome-device"
+	help
+	  Unique slug used in CoAP resource paths and announcements.
+
+config ZEPHYRHOME_FRIENDLY_NAME
+	string "Human-readable device name"
+	default ZEPHYRHOME_DEVICE_NAME
+	help
+	  Displayed in Home Assistant and discovery announcements.
+
+config ZEPHYRHOME_ANNOUNCE_INTERVAL_SEC
+	int "Multicast announcement interval (seconds)"
+	default 30
+	range 10 3600
+	help
+	  How often the device announces itself on the Thread mesh multicast.
+
+# ── OpenThread credentials (set by CLI code generator) ────────────────────
+
+config ZH_OT_CHANNEL
+	int "OpenThread channel"
+	default 15
+	range 11 26
+
+config ZH_OT_PANID
+	hex "OpenThread PAN ID"
+	default 0xABCD
+
+config ZH_OT_NETWORK_NAME
+	string "OpenThread network name"
+	default "ZephyrHome"
+
+config ZH_OT_NETWORK_KEY
+	string "OpenThread network key (32 hex chars)"
+	default "00112233445566778899aabbccddeeff"
+
+# ── CoAP server address ────────────────────────────────────────────────────
+
+config ZH_COAP_SERVER
+	string "CoAP server / multicast address"
+	default "ff03::1"
+	help
+	  IPv6 address to which announcements are sent.
+	  Default ff03::1 is the Thread mesh-local multicast.
+
+endif # ZEPHYRHOME

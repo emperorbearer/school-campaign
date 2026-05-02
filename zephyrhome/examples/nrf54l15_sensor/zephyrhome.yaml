@@ -1,0 +1,40 @@
+# ZephyrHome configuration example — nRF54L15 DK with BME280 + relay
+#
+# Usage:
+#   export ZEPHYR_BASE=/path/to/ncs/zephyr
+#   export ZEPHYRHOME_BASE=/path/to/school-campaign/zephyrhome
+#   pip install -e $ZEPHYRHOME_BASE
+#   zephyrhome run zephyrhome.yaml
+#
+# Requirements:
+#   - nRF Connect SDK (NCS) with nRF54L15 support
+#   - BME280 sensor wired to I2C0 at address 0x76
+#   - Relay or LED on P0.13
+
+device:
+  name: living-room-sensor
+  board: nrf54l15dk/nrf54l15/cpuapp
+  friendly_name: "거실 센서"
+
+network:
+  type: openthread
+  channel: 15
+  pan_id: "0xABCD"
+  # Change this key before deploying!
+  network_key: "00112233445566778899aabbccddeeff"
+  # coap_server: null  # omit → multicast ff03::1 (default)
+
+sensors:
+  - platform: bme280
+    name: room_sensor
+    i2c_bus: i2c0
+    address: 0x76
+    update_interval: 60s
+    friendly_name: "거실 온습도"
+
+switches:
+  - platform: gpio
+    name: relay1
+    pin: "P0.13"
+    active_high: true
+    friendly_name: "거실 릴레이"

@@ -1,0 +1,4 @@
+name: zephyrhome-base
+build:
+  cmake: ..
+  kconfig: ../Kconfig

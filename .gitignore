@@ -11,6 +11,12 @@ frontend/node_modules/
 frontend/dist/
 frontend/.svelte-kit/
 
+# ZephyrHome generated build output
+zephyrhome/**/.zephyrhome_build/
+zephyrhome/**/__pycache__/
+zephyrhome/*.egg-info/
+zephyrhome/zephyrhome.egg-info/
+
 # Misc
 .DS_Store
 .vscode/
