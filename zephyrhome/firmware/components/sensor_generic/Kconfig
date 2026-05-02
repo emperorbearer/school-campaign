@@ -1,0 +1,7 @@
+config ZH_SENSOR_GENERIC
+	bool "ZephyrHome generic sensor component"
+	depends on ZEPHYRHOME
+	select SENSOR
+	help
+	  Wraps any Zephyr sensor driver (BME280, SHT4x, HTS221, …)
+	  as a ZephyrHome sensor component exposed over CoAP.

@@ -1,0 +1,7 @@
+config ZH_SWITCH_GPIO
+	bool "ZephyrHome GPIO switch component"
+	depends on ZEPHYRHOME
+	select GPIO
+	help
+	  Exposes a GPIO output pin (relay, LED, MOSFET) as a CoAP-controllable
+	  switch in ZephyrHome and Home Assistant.
