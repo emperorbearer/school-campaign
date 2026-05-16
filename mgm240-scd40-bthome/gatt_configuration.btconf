@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<gatt_configuration xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+                    xsi:noNamespaceSchemaLocation="http://www.silabs.com/documents/public/xml-schemas/bt-gatt-schema-1.3.xsd">
+
+  <!-- Generic Access (mandatory) -->
+  <service advertise="false" name="Generic Access" requirement="mandatory"
+           sourceId="org.bluetooth.service.generic_access" type="primary" uuid="1800">
+    <characteristic const="false" id="device_name" name="Device Name"
+                    sourceId="org.bluetooth.characteristic.gap.device_name" uuid="2A00">
+      <value length="18" type="utf-8" variable_length="false">MGM240 Air Quality</value>
+      <properties>
+        <read authenticated="false" bonded="false" encrypted="false"/>
+      </properties>
+    </characteristic>
+    <characteristic const="false" name="Appearance"
+                    sourceId="org.bluetooth.characteristic.gap.appearance" uuid="2A01">
+      <value length="2" type="hex" variable_length="false">0000</value>
+      <properties>
+        <read authenticated="false" bonded="false" encrypted="false"/>
+      </properties>
+    </characteristic>
+  </service>
+
+  <!-- Generic Attribute (mandatory) -->
+  <service advertise="false" name="Generic Attribute" requirement="mandatory"
+           sourceId="org.bluetooth.service.generic_attribute" type="primary" uuid="1801">
+  </service>
+
+</gatt_configuration>
