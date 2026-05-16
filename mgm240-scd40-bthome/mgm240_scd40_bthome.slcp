@@ -1,0 +1,68 @@
+project_name: mgm240_scd40_bthome
+package: Bluetooth
+quality: production
+description: >
+  BLE BTHome v2 non-connectable advertising broadcasting CO2, Temperature, and
+  Humidity from a Sensirion SCD40 sensor. Targets the Silicon Labs MGM240 module
+  (EFR32MG24-based). Auto-discovered by Home Assistant via the BTHome integration.
+
+sdk:
+  id: gecko_sdk
+  version: "4.4.0"
+
+toolchain_settings: []
+
+component:
+  # Bluetooth stack
+  - id: bluetooth_stack
+  - id: bluetooth_feature_legacy_advertiser
+  - id: bluetooth_feature_gatt_server
+  - id: bluetooth_feature_connection
+  - id: bluetooth_feature_system
+  - id: gatt_configuration
+
+  # Board / device init
+  - id: device_init
+  - id: sl_system
+  - id: board_control
+
+  # Peripherals
+  - id: sleeptimer
+  - id: i2cspm
+    instance: [sensor]
+  - id: simple_timer
+
+  # Logging (VCOM UART)
+  - id: app_log
+  - id: app_assert
+  - id: iostream_usart
+    instance: [vcom]
+  - id: iostream_retarget_stdio
+
+source:
+  - path: app.c
+  - path: scd40.c
+  - path: bthome.c
+
+include:
+  - path: .
+    file_list:
+      - path: app.h
+      - path: scd40.h
+      - path: bthome.h
+
+configuration:
+  - name: SL_STACK_SIZE
+    value: "4096"
+  - name: SL_HEAP_SIZE
+    value: "12288"
+  - name: SL_BOARD_ENABLE_VCOM
+    value: "1"
+
+readme:
+  - path: README.md
+
+ui_hints:
+  highlight:
+    - path: README.md
+      focus: true
